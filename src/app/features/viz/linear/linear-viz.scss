@@ -1,0 +1,95 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.viz {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 340px;
+  height: 96px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  user-select: none;
+}
+
+.row {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+}
+
+.cell {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 22px;
+  border: 1px solid var(--cell-border);
+  border-radius: 6px;
+  background: var(--cell);
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.cell.on {
+  background: color-mix(in srgb, var(--c) 24%, var(--cell));
+}
+
+.cell.cur {
+  background: color-mix(in srgb, var(--c) 48%, var(--cell));
+  box-shadow:
+    0 0 10px color-mix(in srgb, var(--c) 55%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--c) 40%, transparent);
+}
+
+.lbl {
+  font-size: 10px;
+  line-height: 1;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.lbl b {
+  font-weight: 500;
+  color: var(--c);
+}
+
+.lane {
+  position: relative;
+  height: 14px;
+  width: 100%;
+}
+
+.pointer {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  font-size: 10px;
+  line-height: 14px;
+  color: var(--c);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--c) 60%, transparent);
+  transition:
+    left 0.25s ease,
+    opacity 0.2s ease;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.idx {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+  font-size: 9px;
+  opacity: 0.8;
+}

@@ -1,0 +1,83 @@
+/* Shared look of the grid visualizations (patterns 5–8). */
+:host {
+  display: block;
+  width: 100%;
+}
+
+.viz {
+  height: 96px;
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.col {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 7px;
+}
+
+.cell,
+.seg {
+  display: block;
+  background: var(--cell);
+  border: 1px solid var(--cell-border);
+  border-radius: 3px;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 200ms ease,
+    opacity 200ms ease;
+}
+
+.cell.on,
+.seg.on {
+  background: color-mix(in srgb, var(--viz-color) 26%, var(--cell));
+  border-color: color-mix(in srgb, var(--viz-color) 55%, var(--cell-border));
+}
+
+.cell.cur,
+.seg.cur {
+  background: var(--viz-color);
+  border-color: var(--viz-color);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--viz-color) 65%, transparent);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+/* Square n × n grids (nested / triangular). */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--n), 11px);
+  grid-auto-rows: 11px;
+  gap: 3px;
+  flex: none;
+}
+
+.grid .cell {
+  border-radius: 2.5px;
+}

@@ -1,0 +1,45 @@
+/* Global theme tokens (read-only for feature agents). */
+:root {
+  --bg: #08090c;
+  --surface: #0f1116;
+  --surface-2: #141720;
+  --border: #1f2330;
+  --cell: #161a24;
+  --cell-border: #2a3040;
+  --text: #c9cfdc;
+  --text-strong: #f4f6fb;
+  --text-muted: #6b7386;
+  --code-keyword: #e08a6a;
+  --code-number: #e6a26b;
+  --code-fn: #8fb4ff;
+
+  --tone-green: #4ade80;
+  --tone-violet: #a78bfa;
+  --tone-cyan: #38bdf8;
+  --tone-indigo: #818cf8;
+  --tone-teal: #2dd4bf;
+  --tone-pink: #f472b6;
+  --tone-amber: #f59e0b;
+  --tone-red: #f87171;
+
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --radius: 14px;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font: inherit; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

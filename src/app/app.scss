@@ -1,0 +1,24 @@
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 20px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.hero { text-align: center; }
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+}
+.hero-badge {
+  display: inline-block;
+  padding: 2px 14px;
+  border-radius: 12px;
+  background: var(--tone-green);
+  color: #06140b;
+}
+.hero-sub { margin: 10px 0 0; color: var(--text-muted); }
