@@ -1,0 +1,92 @@
+<section class="card" aria-labelledby="growth-title">
+  <header class="head">
+    <div>
+      <h2 id="growth-title">How they grow</h2>
+      <p class="sub">operations vs. input size (log scale)</p>
+    </div>
+    <label class="slider">
+      <span class="n-label">n = {{ n() }}</span>
+      <input
+        type="range"
+        [min]="minN"
+        [max]="maxN"
+        step="1"
+        [value]="n()"
+        (input)="onInput($event)"
+        aria-label="Input size n"
+      />
+    </label>
+  </header>
+
+  <svg
+    class="chart"
+    [attr.viewBox]="viewBox"
+    preserveAspectRatio="xMidYMid meet"
+    role="img"
+    [attr.aria-label]="'Operations of the 10 patterns for n = 1 to ' + n() + ', log scale'"
+  >
+    @for (t of yTicks(); track t.k) {
+      <line class="grid" [attr.x1]="plot.left" [attr.x2]="plot.right" [attr.y1]="t.y" [attr.y2]="t.y" />
+      <text class="y-label" [attr.x]="plot.left - 8" [attr.y]="t.y" dy="0.32em">10^{{ t.k }}</text>
+    }
+    <line class="axis" [attr.x1]="plot.left" [attr.x2]="plot.right" [attr.y1]="plot.bottom" [attr.y2]="plot.bottom" />
+    @for (t of xTicks(); track t.n) {
+      <text class="x-label" [attr.x]="t.x" [attr.y]="plot.bottom + 18">{{ t.n }}</text>
+    }
+
+    @for (c of curves(); track c.def.id) {
+      <path
+        class="curve"
+        [class.is-active]="highlighted() === c.def.id"
+        [class.is-dimmed]="highlighted() !== null && highlighted() !== c.def.id"
+        [attr.d]="c.d"
+        [style.d]="'path(&quot;' + c.d + '&quot;)'"
+        [attr.stroke]="c.color"
+        (mouseenter)="highlight(c.def.id)"
+        (mouseleave)="clear(c.def.id)"
+      />
+    }
+  </svg>
+
+  <div class="bottom">
+    <div class="legend">
+      <h3 class="legend-title">Patterns</h3>
+      <ul>
+        @for (p of patterns; track p.id) {
+          <li>
+            <button
+              type="button"
+              [attr.aria-pressed]="highlighted() === p.id"
+              [class.is-active]="highlighted() === p.id"
+              [class.is-dimmed]="highlighted() !== null && highlighted() !== p.id"
+              (mouseenter)="highlight(p.id)"
+              (mouseleave)="clear(p.id)"
+              (focus)="highlight(p.id)"
+              (blur)="clear(p.id)"
+            >
+              <span class="swatch" [style.background]="toneVar(p.tone)"></span>
+              <span class="big-o" [style.color]="toneVar(p.tone)">{{ p.bigO }}</span>
+              <span class="name">{{ p.title }}</span>
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <table class="ops-table">
+      <caption>ops at n = {{ n() }}</caption>
+      <thead>
+        <tr><th scope="col">Pattern</th><th scope="col">Big-O</th><th scope="col" class="num">Ops</th></tr>
+      </thead>
+      <tbody>
+        @for (r of rows(); track r.def.id) {
+          <tr [class.is-active]="highlighted() === r.def.id">
+            <td>{{ r.def.title }}</td>
+            <td class="big-o" [style.color]="r.color">{{ r.def.bigO }}</td>
+            <td class="num ops">{{ r.ops }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

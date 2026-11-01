@@ -1,0 +1,37 @@
+:host {
+  --board-columns: minmax(0, 40fr) minmax(0, 38fr) minmax(0, 22fr);
+  display: block;
+  outline: none;
+  border-radius: var(--radius);
+}
+
+:host(:focus-visible) {
+  box-shadow: 0 0 0 2px var(--border);
+}
+
+.controls {
+  margin-bottom: 18px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: var(--board-columns);
+  gap: 20px;
+  padding: 0 23px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 719.98px) {
+  :host { --board-columns: minmax(0, 1fr); }
+  .header { display: none; }
+}
